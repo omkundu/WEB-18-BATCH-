@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../accessing keys/stylesheet.css">
+    <style>
+        #navbar{
+            margin-bottom: 50px;
+            display: flex;
+            justify-content: space-around;
+            background-color: rgb(69, 69, 155);
+            font-size: 25px;
+           
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <div> <a href="backend.html">Backend</a></div>
+        <div> <a href="fronted.html">Fronted</a></div>
+    </div>
+    <form id="invester_form">
+        <input id="imageurl" type="text" placeholder="Enter Image URL">
+        <input id="name" type="text" placeholder="Enter Invester name">
+        <input id="role" type="text" placeholder="Enter Invester Role">
+        <input id="company_logo" type="text" placeholder="Enter Company Logo">
+        <input type="submit"/>
+    </form>
+</body>
+</html>
+<script>
+document.querySelector("#invester_form").addEventListener("submit",myfun)
+var invester_arr=JSON.parse(localStorage.getItem("investerData"))||[];
+
+var invester_Data=[
+    {avatar:"https://masai-website-images.s3.ap-south-1.amazonaws.com/Vijay_Shekhar_Sharma_Paytm_96f52579b8.jpg",name:"Vijay Shekhar Sharma",postiton:"Founder & CEO",logo:"https://masai-website-images.s3.ap-south-1.amazonaws.com/paytm_rect_06df45a24f.svg"},
+    {avatar:"https://masai-website-images.s3.ap-south-1.amazonaws.com/Rectangle_427_637d69bb57.png",name:"Kunal Shah",postiton:"Founder",logo:"https://masai-website-images.s3.ap-south-1.amazonaws.com/cred_0a47d7b4f8.png"},
+    {avatar:"https://masai-website-images.s3.ap-south-1.amazonaws.com/amrish_rau_pine_labs_144e5e587c.jpg",name:"Amrish Rau",postiton:"CEO",logo:"https://masai-website-images.s3.ap-south-1.amazonaws.com/pine_labs_0aa2407434.png"},
+    {avatar:"https://masai-website-images.s3.ap-south-1.amazonaws.com/Sampad_swain_Instamojo_f12bf6341e.jpg",name:"Sampad Swain",postiton:"Co-Founder & CEO",logo:"https://masai-website-images.s3.ap-south-1.amazonaws.com/instamojo_8763e704f7.png"},
+
+    ];
+
+function myfun(){
+    event.preventDefault();
+    var investerObj={
+       investerImg: invester_form.imageurl.value,
+       investerName: invester_form.name.value,
+       investerRole:invester_form.role.value,
+       invester_company_logo:invester_form.company_logo.value,
+    };
+    invester_arr.push(investerObj);
+  localStorage.setItem("investerData" ,JSON.stringify(invester_arr))
+
+
+}
+</script>
